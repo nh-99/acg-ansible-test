@@ -1,0 +1,26 @@
+---
+  - name: Set locale
+    command: /usr/sbin/update-locale LANG={{locale}} LC_ALL={{locale}}
+
+  - name: Set localtime
+    command: /bin/cp /usr/share/zoneinfo/{{timezone}} /etc/localtime
+
+  - name: Set timezone
+    template: src=timezone.conf dest=/etc/timezone
+    register: tzdata
+
+  - name: Update timezone
+    command: dpkg-reconfigure -f noninteractive tzdata
+    when: tzdata.changed
+
+  - name: Update package cache.
+    apt: pkg={{items}} state=installed update-cache=yes
+    with_items:
+      - git
+      - wget
+  
+  - name: Download ACG suite
+    action: shell wget https://raw.githubusercontent.com/UMaineACG/ACG-Package-Suite/master/starter.sh
+    
+  - name: Setup ACG suite
+    action: shell sh starter.sh

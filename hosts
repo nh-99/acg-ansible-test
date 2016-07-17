@@ -1,0 +1,9 @@
+[webservers]
+hikeit.me
+
+[dbservers]
+
+[haproxies]
+
+[email]
+hikeit.me
