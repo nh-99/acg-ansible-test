@@ -1,9 +1,2 @@
-[webservers]
-hikeit.me
-
-[dbservers]
-
-[haproxies]
-
-[email]
-hikeit.me
+[ubuntu-14.04]
+127.0.0.1

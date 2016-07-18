@@ -1,0 +1,5 @@
+---
+  servers:
+    - { project : 'NHoward-testing', name : 'test-vm-1', image : 'Ubuntu 16.04 Server 40GB', key_name : 'ACG', size : '40', flavor : 'Small', groups : 'default,standard' }
+
+  project_name: 'NHoward-testing'

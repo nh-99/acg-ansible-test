@@ -1,0 +1,21 @@
+---
+  - include_vars: servers.yml
+  - include_vars: auth.yml
+
+  - name: launch an instance
+    os_server:
+      state: present
+      auth:
+        auth_url: "https://openstack.acg.maine.edu:5000/v2.0/"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        project_name: "{{ project_name }}"
+      name: "{{ item.name }}"
+      image: "{{ item.image }}"
+      key_name: "{{ item.key_name }}"
+      flavor: "{{ item.flavor }}"
+      boot_from_volume: True
+      volume_size: "{{ item.size }}"
+      security_groups: "{{ item.groups }}"
+      auto_ip: yes
+    with_items: "{{ servers }}"
