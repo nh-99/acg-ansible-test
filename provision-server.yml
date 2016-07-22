@@ -1,4 +1,6 @@
 ---
+- include: create-server.yml
+
 - name: Provision servers
   hosts: all
  
