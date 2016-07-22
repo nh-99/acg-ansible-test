@@ -1,0 +1,6 @@
+---
+- name: Provision servers
+  hosts: all
+ 
+  roles:
+    - role: common

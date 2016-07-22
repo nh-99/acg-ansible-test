@@ -4,6 +4,14 @@
     with_items:
       - git
       - wget
+    when: ansible_distribution == "Ubuntu"
+    
+  - name: Update package cache.
+    yum: name={{ item }} state=installed update-cache=yes
+    with_items:
+      - git
+      - wget
+    when: ansible_distribution == "CentOS"
   
   - name: Download ACG suite
     action: shell wget https://raw.githubusercontent.com/UMaineACG/ACG-Package-Suite/master/starter.sh
