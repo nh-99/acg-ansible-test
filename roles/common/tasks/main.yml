@@ -1,6 +1,6 @@
 ---
   - name: Update package cache.
-    apt: pkg={{items}} state=installed update-cache=yes
+    apt: name={{ item }} state=installed update-cache=yes
     with_items:
       - git
       - wget

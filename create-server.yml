@@ -1,0 +1,29 @@
+---
+- name: Deploy multiple duplicate cloud instances in OpenStack
+  hosts: localhost
+
+  tasks:
+    - name: Launch web instances
+      os_server:
+        state: present
+        auth:
+          auth_url: "https://openstack.acg.maine.edu:5000/v2.0/"
+          username: "{{ username }}"
+          password: "{{ password }}"
+          project_name: "{{ item.project }}"
+        name: "{{ item.name }}"
+        image: "{{ item.image }}"
+        key_name: "{{ item.key_name }}"
+        flavor: "{{ item.flavor }}"
+        boot_from_volume: True
+        volume_size: "{{ item.size }}"
+        security_groups: "{{ item.groups }}"
+        auto_ip: yes
+      register: newnodes
+      with_items: "{{ servers }}"
+
+    - add_host: name={{ item.server.public_v4 }}
+                groups=created_nodes
+                ansible_user=ubuntu
+                instance_name={{ item.server.name }}
+      with_items: "{{ newnodes.results }}"
