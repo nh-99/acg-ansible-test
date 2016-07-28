@@ -1,4 +1,10 @@
 ---
+  - raw: apt-get -y install python-simplejson
+    when: ansible_distribution == "Ubuntu"
+    
+  - raw: yum -y install python-simplejson
+    when: ansible_distribution == "CentOS"
+    
   - name: Update package cache.
     apt: name={{ item }} state=installed update-cache=yes
     with_items:
