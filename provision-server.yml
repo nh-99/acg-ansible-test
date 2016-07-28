@@ -3,6 +3,13 @@
 
 - name: Provision servers
   hosts: all
+  pre_tasks:
+    - raw: apt-get -y install python-simplejson
+      when: ansible_distribution == "Ubuntu"
+    
+    - raw: yum -y install python-simplejson
+      when: ansible_distribution == "CentOS"
  
   roles:
     - role: common
+
