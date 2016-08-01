@@ -12,6 +12,9 @@
     - name: Install python
       raw: yum -y install python
       ignore_errors: yes
+    
+    - name: Gathering facts
+      setup:
  
   roles:
     - role: common
