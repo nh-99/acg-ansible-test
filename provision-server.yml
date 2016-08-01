@@ -3,6 +3,7 @@
 
 - name: Provision servers
   hosts: all
+  gather_facts: no
   pre_tasks:
     - name: Install python
       raw: apt-get -y install python
