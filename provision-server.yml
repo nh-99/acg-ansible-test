@@ -7,9 +7,11 @@
   pre_tasks:
     - name: Install python
       raw: apt-get -y install python
+      ignore_errors: yes
     
     - name: Install python
       raw: yum -y install python
+      ignore_errors: yes
  
   roles:
     - role: common
