@@ -18,6 +18,7 @@
         boot_from_volume: True
         volume_size: "{{ item.size }}"
         security_groups: "{{ item.groups }}"
+        network: "{{ item.network }}"
         auto_ip: yes
       register: newnodes
       with_items: "{{ servers }}"
